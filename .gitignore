@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+colorize.code-workspace
+reports/**/**
