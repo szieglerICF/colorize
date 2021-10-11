@@ -15,7 +15,7 @@ class ColorizerUnitTests(unittest.TestCase):
 
         # Assert
         self.assertTrue(
-            "Here is <span style='color: gold'>3983998231</span> that should be colorized."
+            "Here is <span style='color: orange'>3983998231</span> that should be colorized."
             in results
         )
 
@@ -44,7 +44,7 @@ class ColorizerUnitTests(unittest.TestCase):
         # Assert
         self.assertEqual(
             results,
-            "<span style='font-family: courier; font-size: small'>Here is a <span style='color: darkred'>\"quoted\"</span> string</span><br/>",
+            "<span style='font-family: courier; font-size: small'>Here is a <span style='color: green'>\"quoted\"</span> string</span><br/>",
         )
 
     def test_should_colorize_punc(self):
@@ -58,7 +58,7 @@ class ColorizerUnitTests(unittest.TestCase):
         # Assert
         self.assertEqual(
             results,
-            """<span style='font-family: courier; font-size: small'><span style='color: blue'>{</span><span style='color: darkred'>"hello"</span> : <span style='color: darkred'>"world"</span><span style='color: blue'>}</span></span><br/>""",
+            """<span style='font-family: courier; font-size: small'><span style='color: darkblue'>{</span><span style='color: green'>"hello"</span> : <span style='color: green'>"world"</span><span style='color: darkblue'>}</span></span><br/>""",
         )
 
     def test_should_colorize_keywords(self):
@@ -66,13 +66,27 @@ class ColorizerUnitTests(unittest.TestCase):
         subject = Colorizer()
 
         # Act
-        results = subject.colorize("error!")
+        results = subject.colorize("started yesterday")
         print(f"test results: {results}")
 
         # Assert
         self.assertEqual(
             results,
-            """<span style='font-family: courier; font-size: small'>error!</span><br/>""",
+            """<span style='font-family: courier; font-size: small'><span style='color: blue'>started</span> yesterday</span><br/>""",
+        )
+
+    def test_should_colorize_error(self):
+        # Arrange
+        subject = Colorizer()
+
+        # Act
+        results = subject.colorize("[ERROR] on first line")
+        print(f"test results: {results}")
+
+        # Assert
+        self.assertEqual(
+            results,
+            """<span style='font-family: courier; font-size: small'>[<span style='color: red'>ERROR</span>] on first line</span><br/>""",
         )
 
 
