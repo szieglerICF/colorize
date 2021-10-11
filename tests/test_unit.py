@@ -30,7 +30,7 @@ class ColorizerUnitTests(unittest.TestCase):
         # Assert
         self.assertEqual(
             results,
-            "Here is <span style='color: red'>3983998231</span> that should be colorized.",
+            "Here is a <span style='color: darkred'>\"quoted\"</span> string",
         )
 
 
