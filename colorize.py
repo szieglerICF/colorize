@@ -12,7 +12,9 @@ class Colorizer:
         return re.sub(r"(\b[0-9]+\b)", r"<span style='color: red'>\1</span>", line)
 
     def _update_quotes(self, line: str):
-        return re.sub(r"(\"[^\"]+\")", r"<span style='color: darkred'>\1</span>", line)
+        return re.sub(
+            r"(\b\"[^\"]+\"\b)", r"<span style='color: darkred'>\1</span>", line
+        )
 
 
 def main(line: str):
