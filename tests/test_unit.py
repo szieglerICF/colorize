@@ -15,7 +15,7 @@ class ColorizerUnitTests(unittest.TestCase):
 
         # Assert
         self.assertTrue(
-            "Here is <span style='color: red'>3983998231</span> that should be colorized."
+            "Here is <span style='color: gold'>3983998231</span> that should be colorized."
             in results
         )
 
@@ -45,6 +45,34 @@ class ColorizerUnitTests(unittest.TestCase):
         self.assertEqual(
             results,
             "<span style='font-family: courier; font-size: small'>Here is a <span style='color: darkred'>\"quoted\"</span> string</span><br/>",
+        )
+
+    def test_should_colorize_punc(self):
+        # Arrange
+        subject = Colorizer()
+
+        # Act
+        results = subject.colorize('{"hello" : "world"}')
+        print(f"test results: {results}")
+
+        # Assert
+        self.assertEqual(
+            results,
+            """<span style='font-family: courier; font-size: small'><span style='color: blue'>{</span><span style='color: darkred'>"hello"</span> : <span style='color: darkred'>"world"</span><span style='color: blue'>}</span></span><br/>""",
+        )
+
+    def test_should_colorize_keywords(self):
+        # Arrange
+        subject = Colorizer()
+
+        # Act
+        results = subject.colorize("error!")
+        print(f"test results: {results}")
+
+        # Assert
+        self.assertEqual(
+            results,
+            """<span style='font-family: courier; font-size: small'>error!</span><br/>""",
         )
 
 
