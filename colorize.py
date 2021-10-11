@@ -13,3 +13,13 @@ class Colorizer:
 
     def _update_quotes(self, line: str):
         return re.sub(r"(\"[^\"]+\")", r"<span style='color: darkred'>\1</span>", line)
+
+
+def main(line: str):
+    colorizer = Colorizer()
+    print(colorizer.colorize(line))
+
+
+if __name__ == "__main__":
+    line = sys.argv[1]
+    main(line)
