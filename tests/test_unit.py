@@ -19,6 +19,20 @@ class ColorizerUnitTests(unittest.TestCase):
             in results
         )
 
+    def test_should_not_colorize_number_in_id(self):
+        # Arrange
+        subject = Colorizer()
+
+        # Act
+        results = subject.colorize("Here is 33jK55 that should be colorized.")
+        print(f"test results: {results}")
+
+        # Assert
+        self.assertEqual(
+            results,
+            "<span style='font-family: courier; font-size: small'>Here is 33jK55 that should be colorized.</span><br/>",
+        )
+
     def test_should_colorize_quote(self):
         # Arrange
         subject = Colorizer()
@@ -30,7 +44,7 @@ class ColorizerUnitTests(unittest.TestCase):
         # Assert
         self.assertEqual(
             results,
-            "Here is a <span style='color: darkred'>\"quoted\"</span> string",
+            "<span style='font-family: courier; font-size: small'>Here is a <span style='color: darkred'>\"quoted\"</span> string</span><br/>",
         )
 
 
