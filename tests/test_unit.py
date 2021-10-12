@@ -47,6 +47,20 @@ class ColorizerUnitTests(unittest.TestCase):
             "<span style='font-family: courier; font-size: small'>Here is a <span style='color: green'>\"quoted\"</span> string</span><br/>",
         )
 
+    def test_should_colorize_single_quote(self):
+        # Arrange
+        subject = Colorizer()
+
+        # Act
+        results = subject.colorize("Here is a 'quoted' string")
+        print(f"test results: {results}")
+
+        # Assert
+        self.assertEqual(
+            results,
+            """<span style='font-family: courier; font-size: small'>Here is a <span style='color: green'>'quoted'</span> string</span><br/>""",
+        )
+
     def test_should_colorize_punc(self):
         # Arrange
         subject = Colorizer()
